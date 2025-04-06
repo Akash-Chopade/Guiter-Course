@@ -1,0 +1,68 @@
+/* WorkExperience.module.css */
+.workExperience {
+    padding: 3rem 0;
+}
+
+.heading {
+    font-size: 2rem;
+    text-align: center;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.role {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.company {
+    font-weight: normal;
+    color: #ddd;
+}
+
+.location {
+    font-size: 1rem;
+    color: #bbb;
+    margin-bottom: 0.5rem;
+}
+
+.responsibilities {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.responsibilities li {
+    margin-bottom: 0.5rem;
+    color: #eee;
+}  
+
+.vertical-timeline::before {
+    background-color: #4e4caf;
+}
+
+.vertical-timeline--animate .vertical-timeline-element-icon.bounce-in{
+    animation: bounce-in 0.5s;
+    background: #fff;
+    border: 1px solid #4e4caf;
+}
+
+.solera-icon{
+    width: 35px;
+    height: 35px;
+    padding: 2px;
+}
+
+@media (max-width: 767px) {
+    .workExperience {
+        padding: 2rem 0;
+    }
+
+    .vertical-timeline li{
+        font-size: 13px;
+    }
+
+    .vertical-timeline h3{
+        font-size: 1.1rem;
+    }
+}
