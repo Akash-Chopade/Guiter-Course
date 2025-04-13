@@ -7,6 +7,8 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -19,6 +21,24 @@ function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      console.log("Please enter email and password.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://localhost:44383/api/User/Login?Email=${encodeURIComponent(email)}&Password=${encodeURIComponent(password)}`, {
+        method: 'POST',
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
 
   return (
     <>
@@ -51,9 +71,21 @@ function Header() {
       {showLoginModal && (
         <div className="modal-overlay" onClick={toggleLoginModal}>
           <div className="login-modal" onClick={(e) => e.stopPropagation()}>
-            <input type="text" placeholder="Username" className="login-input" />
-            <input type="password" placeholder="Password" className="login-input" />
-            <button className="login-btn">Login</button>
+            <input
+              type="text"
+              placeholder="Email"
+              className="login-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="login-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button className="login-btn" onClick={handleLogin}>Login</button>
           </div>
         </div>
       )}
